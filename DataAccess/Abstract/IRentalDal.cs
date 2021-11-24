@@ -10,6 +10,8 @@ namespace DataAccess.Abstract
     {
         List<RentalListDto> GetRentalList();
 
+        void UpdateActiveFlag(int userId, int carId);
+
         //bool CheckRental(DateTime rentDate, DateTime returnDate, int carId);
     }
 }

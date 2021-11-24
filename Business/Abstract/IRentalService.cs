@@ -17,5 +17,7 @@ namespace Business.Abstract
         IDataResult<List<RentalListDto>> GetRentalList();
 
         IResult CheckRental(DateTime rentDate, DateTime returnDate, int carId);
+
+        IResult UpdateActiveFlag(int userId, int carId);
     }
 }

@@ -46,5 +46,19 @@ namespace DataAccess.Concrete.EntityFramework
                 return result.ToList();
             }
         }
+
+        public void UpdateActiveFlag(int userId, int carId)
+        {
+            using (ReCapContext context = new ReCapContext())
+            {
+                Rental rnt = context.Rentals.SingleOrDefault(i => i.CarId == carId && i.CustomerId == userId);
+                if (rnt != null)
+                {
+                    rnt.ActiveFlag = true;
+                    context.Update(rnt);
+                    context.SaveChanges();
+                }
+            }
+        }
     }
 }

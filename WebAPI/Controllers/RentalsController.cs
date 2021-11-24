@@ -71,6 +71,18 @@ namespace WebAPI.Controllers
 
         }
 
+        [HttpPost("updateActiveFlag")]
+        public IActionResult UpdateActiveFlag(Rental rental)
+        {
+            var result = _rentalService.UpdateActiveFlag(rental.CustomerId, rental.CarId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+
+        }
+
         [HttpPost("delete")]
         public IActionResult Delete(Rental rental)
         {

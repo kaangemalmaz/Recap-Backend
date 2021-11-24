@@ -23,9 +23,9 @@ namespace Business.Concrete
             _rentalDal = rentalDal;
         }
 
-        [ValidationAspect(typeof(RentalValidator))]
-        [TransactionScopeAspect]
-        [CacheRemoveAspect("IRentalDal.Get")]
+        //[ValidationAspect(typeof(RentalValidator))]
+        //[TransactionScopeAspect]
+        //[CacheRemoveAspect("IRentalDal.Get")]
         public IResult Add(Rental rental)
         {
             var selected = _rentalDal.Get(i => i.CarId == rental.CarId);
@@ -90,6 +90,12 @@ namespace Business.Concrete
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);
+            return new SuccessResult();
+        }
+
+        public IResult UpdateActiveFlag(int userId, int carId)
+        {
+            _rentalDal.UpdateActiveFlag(userId, carId);
             return new SuccessResult();
         }
     }
